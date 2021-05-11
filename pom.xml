@@ -11,11 +11,12 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-polettif-matsim</id>
-            <name>polettif-matsim</name>
-            <url>https://api.bintray.com/maven/polettif/matsim/pt2matsim/;publish=1</url>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
     </distributionManagement>
+
 
     <repositories>
         <repository>
@@ -30,6 +31,7 @@
 
 	<properties>
 		<geotools.version>24.2</geotools.version>
+		<github.global.server>github</github.global.server>
 	</properties>
 
     <dependencies>
@@ -141,6 +143,27 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <branch>refs/heads/mvn-repo</branch>
+                    <includes><include>**/*</include></includes>
+                    <repositoryName>pt2matsim</repositoryName>
+                    <repositoryOwner>ksauzz</repositoryOwner>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
                     </execution>
                 </executions>
             </plugin>
