@@ -9,13 +9,13 @@
     <name>PT2MATSim</name>
     <description>Public Transport to MATSim</description>
 
-		<distributionManagement>
-				<repository>
-						<id>internal.repo</id>
-						<name>Temporary Staging Repository</name>
-						<url>file://${project.build.directory}/mvn-repo</url>
-				</repository>
-		</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
 
 
     <repositories>
@@ -146,28 +146,27 @@
                     </execution>
                 </executions>
             </plugin>
-						<plugin>
-								<groupId>com.github.github</groupId>
-								<artifactId>site-maven-plugin</artifactId>
-								<version>0.12</version>
-								<configuration>
-										<message>Maven artifacts for ${project.version}</message>
-										<noJekyll>true</noJekyll>
-										<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-										<branch>refs/heads/mvn-repo</branch>
-										<includes><include>**/*</include></includes>
-										<repositoryName>pt2matsim</repositoryName>
-										<repositoryOwner>ksauzz</repositoryOwner>
-								</configuration>
-								<executions>
-										<execution>
-												<goals>
-														<goal>site</goal>
-												</goals>
-												<phase>deploy</phase>
-										</execution>
-								</executions>
-						</plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <branch>refs/heads/mvn-repo</branch>
+                    <includes><include>**/*</include></includes>
+                    <repositoryName>pt2matsim</repositoryName>
+                    <repositoryOwner>ksauzz</repositoryOwner>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
